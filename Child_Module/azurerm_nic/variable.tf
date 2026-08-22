@@ -11,6 +11,7 @@ variable "nic_deepak" {
     })
   }))
 }
+
 variable "subnet_id" {
   description = "Subnet ID for NIC"
   type        = string

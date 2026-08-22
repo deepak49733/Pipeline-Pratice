@@ -7,4 +7,4 @@ data "azurerm_subnet" "deepak_subnet" {
 data "azurerm_network_interface" "deepak_nic" {
   name                = "deepak_nic"
   resource_group_name = "deepak_rg"
-}
+}

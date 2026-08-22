@@ -4,12 +4,7 @@ rg = {
     location = "East US"
   }
 }
-rg1 = {
-  rg1 = {
-    name     = "deepak_rg"
-    location = "East US"
-  }
-}
+
 vnet = {
   vnet1 = {
     name                = "deepak_vnet"
@@ -18,6 +13,7 @@ vnet = {
     address_space       = ["10.0.0.0/16"]
   }
 }
+
 subnet = {
   subnet1 = {
     name                 = "deepak_subnet"
@@ -34,7 +30,6 @@ nic = {
     resource_group_name = "deepak_rg"
     ip_configuration = {
       name                          = "internal"
-      subnet_id                     = "data.azurerm_subnet.deepak_subnet.id"
       private_ip_address_allocation = "Dynamic"
     }
   }
