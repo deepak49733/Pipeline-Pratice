@@ -4,7 +4,12 @@ rg = {
     location = "East US"
   }
 }
-
+rg1 = {
+  rg1 = {
+    name     = "deepak_rg"
+    location = "East US"
+  }
+}
 vnet = {
   vnet1 = {
     name                = "deepak_vnet"
