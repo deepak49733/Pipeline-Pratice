@@ -19,5 +19,3 @@ module "azurerm_nic" {
   nic_deepak = var.nic
   subnet_id  = data.azurerm_subnet.deepak_subnet.id
 }
-
-
