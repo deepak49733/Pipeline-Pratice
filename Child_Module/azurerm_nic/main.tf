@@ -1,5 +1,4 @@
 resource "azurerm_network_interface" "nic_deepak" {
-
   for_each = var.nic_deepak
 
   name                = each.value.name
@@ -12,4 +11,4 @@ resource "azurerm_network_interface" "nic_deepak" {
     private_ip_address_allocation = each.value.ip_configuration.private_ip_address_allocation
     public_ip_address_id          = try(each.value.ip_configuration.public_ip_address_id, null)
   }
-}
+}
