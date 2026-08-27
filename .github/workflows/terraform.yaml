@@ -6,6 +6,7 @@ on:
       - main
       - master
       - pipeline_practice
+
   pull_request:
     branches:
       - main
@@ -13,6 +14,7 @@ on:
       - pipeline_practice
 
 permissions:
+  id-token: write
   contents: read
   pull-requests: write
 
@@ -20,32 +22,48 @@ jobs:
   terraform:
     name: "Terraform Init, Plan & Apply"
     runs-on: ubuntu-latest
-    
+
     defaults:
       run:
         working-directory: ./Parent_Module
 
     steps:
+
+      # 1. Checkout repository
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      # 2. Login to Azure
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # 3. Setup Terraform
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.8.0
 
+      # 4. Terraform Format Check
       - name: Terraform Format Check
         run: terraform fmt -check
 
+      # 5. Terraform Init
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -input=false
 
+      # 6. Terraform Validate
       - name: Terraform Validate
         run: terraform validate
 
+      # 7. Terraform Plan
       - name: Terraform Plan
         run: terraform plan -input=false
 
+      # 8. Terraform Apply
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
