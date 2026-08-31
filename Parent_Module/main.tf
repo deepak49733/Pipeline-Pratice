@@ -4,13 +4,15 @@ module "azurerm_resource_group" {
 }
 
 module "azurerm_vnet" {
-  source = "../Child_Module/azurerm_vnet"
-  vnet   = var.vnet
+  depends_on = [module.azurerm_resource_group]
+  source     = "../Child_Module/azurerm_vnet"
+  vnet       = var.vnet
 }
 
 module "azurerm_subnet" {
-  source = "../Child_Module/azurerm_subnet"
-  subnet = var.subnet
+  depends_on = [module.azurerm_vnet]
+  source     = "../Child_Module/azurerm_subnet"
+  subnet     = var.subnet
 }
 
 module "azurerm_nic" {
