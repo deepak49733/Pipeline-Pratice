@@ -25,7 +25,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./Parent_Module
+        working-directory: ./environments/preprod
 
     steps:
 
